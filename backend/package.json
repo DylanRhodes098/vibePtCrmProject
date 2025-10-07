@@ -6,7 +6,14 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "migrate": "cross-env NODE_ENV=development npx sequelize-cli db:migrate",
+    "undo:migrate": "cross-env NODE_ENV=development npx sequelize-cli db:migrate:undo",
+    "seed": "cross-env NODE_ENV=development npx sequelize-cli db:seed:all",
+    "undo:seed": "cross-env NODE_ENV=development npx sequelize-cli db:seed:undo:all",
+    "migrate-and-seed": "npm run migrate && npm run seed",
+    "undo:migrate-and-seed": "npm run undo:seed && npm run undo:migrate",
+    "redo:migrate": "npm run undo:migrate && npm run migrate"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",
